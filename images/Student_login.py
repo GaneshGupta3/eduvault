@@ -80,7 +80,7 @@ def show_otp_dialog(userid, window):
             window.destroy()  # Close the login window
             # userMainWindow = userHomePage(user_info)
             # userMainWindow.run()
-            main()
+            main(userid)
             return
         else:
             attempts += 1

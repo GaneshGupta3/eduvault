@@ -2,21 +2,31 @@ import tkinter as tk
 from PIL import Image, ImageTk
 
 
-def main():
+
+
+from current_user_info import *
+from dbConnection import *
+
+
+
+
+
+def main(user_id):
+    currentuser = currentUserInfo(user_id,"S")
 # Function to fetch student name from the database (placeholder)
     def fetch_student_name():
     # Placeholder code to fetch student's name from the database
-        return "Shivam Prajapati"  # Replace this with actual retrieval logic from your database
+        return currentuser.name  # Replace this with actual retrieval logic from your database
 
 # Function to fetch user information from the database (placeholder)
     def fetch_user_info():
     # Placeholder function to fetch user information from the database
     # Replace this with your actual database retrieval logic
+        
         user_info = {
-        "First Name": "Shivam",
-        "Last Name": "Prajapati",
-        "Email": "shivam@example.com",
-        "Contact Number": "9876543210"
+        "Name": currentuser.name ,
+        "Email": currentuser.email,
+        "Contact Number": currentuser.phone
         }
         return user_info
 
@@ -41,7 +51,7 @@ def main():
         bg_label.place(x=0, y=0, relwidth=1, relheight=1)
 
     # Fetch student's name from the database
-        student_name = fetch_student_name()
+        student_name = currentuser.name
 
     # Load the header text image
         header_text_image = Image.open("assets//headerText_image.png")
@@ -57,7 +67,7 @@ def main():
         header_text_label.pack(side="left")
 
     # Create a label for the greeting
-        greeting_label = tk.Label(header_frame, text=f"Welcome {student_name}\t!", fg="white", bg="#272A37", font=("yu gothic ui bold", 20))
+        greeting_label = tk.Label(header_frame, text=f"Welcome {student_name} !", fg="white", bg="#272A37", font=("yu gothic ui bold", 20))
         greeting_label.pack(side="left", padx=(10, 0), pady=(0, 10))
 
     # Display user information in labels with spacing between lines
