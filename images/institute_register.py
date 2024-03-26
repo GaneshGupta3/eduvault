@@ -1,5 +1,85 @@
 from tkinter import *
 from tkinter import messagebox
+from tkinter import messagebox as mb
+import datetime
+import hashlib
+import random
+from dbConnection import *
+from uidGenerator import *
+from password import *
+
+
+
+
+
+
+
+
+
+
+
+def checkInstitute(tan):
+    dbobj = db()
+    mydb,cursor = dbobj.dbconnect("credentials")
+    sql_query = "SELECT * FROM institute WHERE tan = %s"
+    cursor.execute(sql_query, (tan,))
+    result = cursor.fetchone()
+    if result:
+        return True
+    else:
+        return False
+
+def instituteInsert(uid,name,tan,email,phone,password):
+    dbobj = db()
+    mydb,cursor = dbobj.dbconnect("credentials")
+    
+    institute_query = "INSERT INTO institute (uid,name,tan,email,phone,verified,suspended) VALUES (%s, %s, %s, %s, %s, %s, %s)"
+    institute_data = (uid,name,tan,email,phone,0,0)
+    cursor.execute(institute_query, institute_data)
+    login_query = "INSERT INTO login (uid,`key`, hash) VALUES (%s, %s, %s)"
+    login_data = (uid, "key", password)
+    cursor.execute(login_query, login_data)
+    
+    mydb.commit()
+    mydb.close()
+    
+    userID = uid
+    successMessage =f"Registration Successful. Your User ID is {userID}"
+    mb.showinfo("Success",successMessage)
+
+
+    
+
+def saveinfo():
+        institute_name = institute_name_entry.get()
+        institute_email = email_entry.get()
+        institute_phone = contact_entry.get()
+        institute_tan = tan_entry.get()
+        institute_password = password_entry.get()
+
+        uidobj = uid(institute_tan,0)
+        generated_uid = uidobj.generate_unique_12_digit_number()
+        passFuncobj = passFunc("key",institute_password,institute_password)
+        boiledPass = passFuncobj.generateBoilpass()
+
+        if not (checkInstitute(institute_tan)):
+            instituteInsert(generated_uid,institute_name,institute_tan,institute_email,institute_phone,boiledPass)
+        else:
+            mb.showerror("Warning", f"The TAN number '{institute_tan}' is already registered")
+
+def instituteSignup():
+    saveinfo()
+
+
+
+
+
+
+
+
+
+
+
 
 def validate_institute_name():
     institute_name = institute_name_entry.get()
@@ -29,6 +109,7 @@ def submit_form():
     if not validate_contact_number():
         messagebox.showerror("Error", "Please enter a proper Contact number!")
         return
+    instituteSignup()
     
     # Get user input data
     institute_name = institute_name_entry.get()
@@ -43,7 +124,7 @@ def submit_form():
     message += f"Email: {email}\n"
     message += f"Contact Number: {contact_number}\n"
     message += f"TAN Number: {tan_number}\n"
-  
+
     messagebox.showinfo("Success", message)
 
 window = Tk()

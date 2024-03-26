@@ -1,6 +1,112 @@
 from tkinter import *
 from tkinter import messagebox
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+from tkcalendar import DateEntry
+import datetime
+from password import passFunc
+from uidGenerator import uid
+from dbConnection import *
+from storage_quota import *
+
+
+
+def checkStudent(aadhaar_number):
+    dbobj = db()
+    mydb,cursor = dbobj.dbconnect("credentials")
+    sql_query = "SELECT * FROM student WHERE aadhaar_number = %s"
+    cursor.execute(sql_query, (aadhaar_number,))
+    result = cursor.fetchone()
+    if result:
+        return True
+    else:
+        return False
+        
+        
+
+def studentInsert(uid,full_name, email, dob_value, gender, contact_no, aadhaar_no, password):
+    
+    dbobj = db()
+    mydb,cursor = dbobj.dbconnect("credentials")
+    
+     # Insert data into the login table
+    login_query = "INSERT INTO login (uid,`key`, hash) VALUES (%s, %s, %s)"
+    # For simplicity, assuming 'key' is the username and 'hash' is the password hash
+    login_data = (uid, "key", password)  # Replace 'password_hash' with the actual hashed password
+    cursor.execute(login_query, login_data)
+    
+    
+    # Insert data into the student table
+    student_query = "INSERT INTO student (uid, name, gender, dob, phone, email, aadhaar_number,suspended) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)"
+    student_data = (uid, full_name, gender, dob_value, contact_no, email, aadhaar_no,0)
+    cursor.execute(student_query, student_data)
+    
+   
+    
+     # Commit changes and close the connection
+    mydb.commit()
+    mydb.close()
+    
+    userID = uid
+    successMessage =f"Registration Successful. Your User ID is {userID}"
+    messagebox.showinfo("Success",successMessage)
+    
+    
+    
+def saveinfo():
+        # Get all the user inputs
+    #         first_name = firstName_entry.get()
+    # last_name = lastName_entry.get()
+    # email = emailName_entry.get()
+    # aadhar_number = aadhar_entry.get()
+    # contact_number = contact_entry.get()
+    
+    
+        full_name = firstName_entry.get()+lastName_entry.get()
+        email = emailName_entry.get()
+        dob_value = "31/01/2004"
+        gender = "Male" #if var.get() == 1 else "Female"
+        contact_number = contact_entry.get()
+        aadhaar_number = aadhar_entry.get()
+        password = confirm_passwordName_entry.get()
+        
+        uidobj = uid(aadhaar_number,1)
+        generated_uid = uidobj.generate_unique_12_digit_number()
+        passFuncobj = passFunc("key",password,password)
+        boiledPass = passFuncobj.generateBoilpass()
+        if not (checkStudent(aadhaar_number)):
+            studentInsert(generated_uid,full_name, email, dob_value, gender, contact_number, aadhaar_number, boiledPass)
+            storageobj = StorageQuota(generated_uid)
+            storageobj.initialise_storage_quota()
+        else:
+            messagebox.showerror("User Already Exists", f"The Aadhaar number '{aadhaar_number}' is already registered")
+
+
+def studentSignup():
+    saveinfo()
+
+
+
+
+
+
+
+
+
+
 def validate_aadhar_number():
     aadhar_number = aadhar_entry.get()
     if len(aadhar_number) != 12 or not aadhar_number.isdigit():
@@ -46,6 +152,7 @@ def submit_form():
     message += f"Contact Number: {contact_number}"
     
     messagebox.showinfo("Success", message)
+    studentSignup()
 
 window = Tk()
 
@@ -399,7 +506,9 @@ headerText3 = Label(
 )
 headerText3.place(x=700, y=530)
 
-window.resizable(False, False)
-window.mainloop()
+def student_register():
+    window.resizable(False, False)
+    window.mainloop()
 
-
+if __name__ == '__main__':
+    student_register()

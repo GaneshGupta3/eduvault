@@ -24,8 +24,9 @@ def fetch_user_info():
 
 def validate_student_name():
     student_name = student_name_entry.get()
-    if len(student_name) < 1:def open_profile_window():
-    user_info = fetch_user_info()
+    if len(student_name) < 1:
+        def open_profile_window():
+            user_info = fetch_user_info()
 
     # Create a new window for the profile with increased size
     profile_window = tk.Toplevel(root)

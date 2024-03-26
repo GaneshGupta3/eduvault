@@ -112,7 +112,7 @@ frame = tk.Frame(root, bg="black")
 frame.pack(anchor="nw", padx=10, pady=10)
 
 # Load the image
-image_path = "images/hyy.png"
+image_path = "assets\\hyy.png"
 image = Image.open(image_path)
 photo = ImageTk.PhotoImage(image)
 

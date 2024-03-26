@@ -11,7 +11,7 @@ class LoginPage:
         self.window.title('Login Page')
 
         # Background Image
-        self.bg_frame = Image.open('images\\background1.png')
+        self.bg_frame = Image.open('./background2.png')
         photo = ImageTk.PhotoImage(self.bg_frame)
         self.bg_panel = Label(self.window, image=photo)
         self.bg_panel.image = photo
@@ -28,7 +28,7 @@ class LoginPage:
         self.heading.place(x=80, y=30, width=500, height=30)
 
         # Left Side Image
-        self.side_image = Image.open('images\\vector.png')
+        self.side_image = Image.open('./vector.png')
         photo = ImageTk.PhotoImage(self.side_image)
         self.side_image_label = Label(self.lgn_frame, image=photo, bg='#040405')
         self.side_image_label.image = photo
@@ -37,7 +37,7 @@ class LoginPage:
         # ========================================================================
         # ============ Sign In Image =============================================
         # ========================================================================
-        self.sign_in_image = Image.open('images\\hyy.png')
+        self.sign_in_image = Image.open('./hyy.png')
         photo = ImageTk.PhotoImage(self.sign_in_image)
         self.sign_in_image_label = Label(self.lgn_frame, image=photo, bg='#040405')
         self.sign_in_image_label.image = photo
@@ -51,7 +51,7 @@ class LoginPage:
         self.sign_in_label.place(x=630, y=240)
 
         # Label asking user For student
-        self.lgn_button = Image.open('images\\btn1.png')
+        self.lgn_button = Image.open('./btn1.png')
         photo = ImageTk.PhotoImage(self.lgn_button)
         self.lgn_button_label = Label(self.lgn_frame, image=photo, bg='#040405')
         self.lgn_button_label.image = photo
@@ -61,7 +61,7 @@ class LoginPage:
         self.login.place(x=20, y=10)
         
         # Label asking user for INSTITUTE
-        self.lgn_button = Image.open('images\\btn1.png')
+        self.lgn_button = Image.open('./btn1.png')
         photo = ImageTk.PhotoImage(self.lgn_button)
         self.lgn_button_label = Label(self.lgn_frame, image=photo, bg='#040405')
         self.lgn_button_label.image = photo
@@ -71,7 +71,7 @@ class LoginPage:
         self.login.place(x=20, y=10)
         
         # Label asking user for Admin
-        self.lgn_button = Image.open('images\\btn1.png')
+        self.lgn_button = Image.open('./btn1.png')
         photo = ImageTk.PhotoImage(self.lgn_button)
         self.lgn_button_label = Label(self.lgn_frame, image=photo, bg='#040405')
         self.lgn_button_label.image = photo
