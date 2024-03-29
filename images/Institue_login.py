@@ -1,5 +1,148 @@
-from tkinter import *
+from tkinter import Tk, Frame, Label, Button, BOTTOM, FLAT,Entry,Canvas
 from PIL import ImageTk, Image
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# from student_register import studentSignup
+# from institute_register import instituteSignup
+from tkinter import messagebox
+from dbConnection import *
+from password import *
+from postLogin import *
+from login_activity import *
+from otp import *
+from tkinter import simpledialog
+from current_user_info import *
+from demo2 import *
+from student_profile import *
+from institute_homepage import *
+
+
+
+# def show_otp_dialog(userid, window):
+#     if (userid[0]=="S"):
+#         user_type = "S"
+#     else:
+#         user_type = "I"    
+#     generated_otp = generate_otp()
+#     user_info = currentUserInfo(userid,user_type)
+#     # otp_send(generated_otp,user_info)
+#     while True:  # Keep asking for OTP until correct or user cancels
+#         otp = simpledialog.askstring("OTP Verification", f"Please enter the OTP {generated_otp} sent to your registered E-mail Id:")
+
+#         # if otp is None:
+            
+#         #     window.destroy()  # Close the main window
+#         #     return
+
+#         if verify_otp(otp, generated_otp):
+#             update_last_login(userid)
+#             window.destroy()  # Close the login window
+#             # display_hello(userid)
+#             userMainWindow = userHomePage(user_info)
+#             userMainWindow.run()
+#             return
+#         else: 
+#             messagebox.showerror("Incorrect OTP", "The entered OTP is incorrect. Please try again.")
+
+def show_otp_dialog(userid, window):
+    if userid[0] == "S":
+        user_type = "S"
+    else:
+        user_type = "I"
+
+    generated_otp = generate_otp()
+    user_info = currentUserInfo(userid, user_type)
+    otp_send(generated_otp,user_info)
+    attempts = 0
+
+    while attempts < 3:  # Limit the maximum number of attempts to 3
+        otp = simpledialog.askstring("OTP Verification", f"Please enter the OTP {generated_otp} sent to your registered E-mail Id:")
+
+        if otp is None:
+            window.destroy()  # Close the main window
+            return
+
+        if verify_otp(otp, generated_otp):
+            update_last_login(userid)
+            window.destroy()  # Close the login window
+            # userMainWindow = userHomePage(user_info)
+            # userMainWindow.run()
+            print("opening institute profile page")
+            # main(userid)
+            open_institute_homepage()
+            
+            return
+        else:
+            attempts += 1
+            remaining_attempts = 3 - attempts
+            messagebox.showerror("Incorrect OTP", f"The entered OTP is incorrect. You have {remaining_attempts} attempt(s) remaining. Please try again.")
+
+    # If the maximum number of attempts is reached
+    messagebox.showerror("Max Attempts Reached", "You have reached the maximum number of OTP attempts. Please try again later.")
+    window.destroy()  # Close the main window
+   
+        
+def submit(institute_id,institute_password,window):
+    userid = institute_id
+    password = institute_password
+    
+    
+    if not userid or not password:
+        messagebox.showerror("Error", "Please enter both userid and password.")
+        
+        return
+    
+    dbobj = db()
+    mydb,cursor = dbobj.dbconnect("credentials")
+    
+    query_boiledPass = "SELECT hash from login WHERE uid=%s"
+    query_uid=userid
+    cursor.execute(query_boiledPass, (query_uid,))
+    resultTuple = cursor.fetchone()
+    if resultTuple is None:
+        # User does not exist
+        messagebox.showerror("Error", "User does not exist.")
+        return
+    else:
+        raw_boiledhash = resultTuple[0]
+        
+        passFuncobj = passFunc("key",password,password)
+        isPasswordVerified = passFuncobj.passVerify(password,raw_boiledhash)
+    print("submit button is clicked")
+    if isPasswordVerified:
+        show_otp_dialog(userid,window)
+  
+    else:
+        messagebox.showerror("Access Denied","Invalid userid or Password")
+    
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 class LoginPage:
@@ -57,6 +200,9 @@ class LoginPage:
                                     font=("yu gothic ui", 17, "bold"))
         self.sign_in_label.place(x=650, y=240)
 
+        
+
+
         # ========================================================================
         # ============================username====================================
         # ========================================================================
@@ -67,6 +213,7 @@ class LoginPage:
         self.username_entry = Entry(self.lgn_frame, highlightthickness=0, relief=FLAT, bg="#040405", fg="#6b6a69",
                                     font=("yu gothic ui ", 12, "bold"), insertbackground = '#6b6a69')
         self.username_entry.place(x=580, y=335, width=270)
+        user_id = self.username_entry.get()
 
         self.username_line = Canvas(self.lgn_frame, width=300, height=2.0, bg="#bdb9b1", highlightthickness=0)
         self.username_line.place(x=550, y=359)
@@ -86,7 +233,7 @@ class LoginPage:
         self.lgn_button_label.image = photo
         self.lgn_button_label.place(x=550, y=450)
         self.login = Button(self.lgn_button_label, text='LOGIN', font=("yu gothic ui", 13, "bold"), width=25, bd=0,
-                            bg='#3047ff', cursor='hand2', activebackground='#3047ff', fg='white')
+                            bg='#3047ff', cursor='hand2', activebackground='#3047ff', fg='white',command=self.login)
         self.login.place(x=20, y=10)
         # ========================================================================
         # ============================Forgot password=============================
@@ -113,6 +260,7 @@ class LoginPage:
         self.password_entry = Entry(self.lgn_frame, highlightthickness=0, relief=FLAT, bg="#040405", fg="#6b6a69",
                                     font=("yu gothic ui", 12, "bold"), show="*", insertbackground = '#6b6a69')
         self.password_entry.place(x=580, y=416, width=244)
+        user_password = self.password_entry.get()
 
         self.password_line = Canvas(self.lgn_frame, width=300, height=2.0, bg="#bdb9b1", highlightthickness=0)
         self.password_line.place(x=550, y=440)
@@ -154,7 +302,13 @@ class LoginPage:
                                   , borderwidth=0, background="white", cursor="hand2")
         self.show_button.place(x=860, y=420)
         self.password_entry.config(show='*')
-
+    
+    def login(self):
+        institute_id = self.username_entry.get()
+        institute_password = self.password_entry.get()
+        window = self.window
+        submit(institute_id,institute_password,window)
+        
 
 def page():
     window = Tk()
