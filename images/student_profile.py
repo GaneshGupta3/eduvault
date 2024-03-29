@@ -6,9 +6,7 @@ from PIL import Image, ImageTk
 
 from current_user_info import *
 from dbConnection import *
-
-
-
+from doc_upload_selector import *
 
 
 def main(user_id):
@@ -260,7 +258,18 @@ def main(user_id):
     change_password_button = tk.Button(root, text="Change Password", font=("yu gothic ui", 13, "bold"), width=25, bd=0, bg='#3047ff',
                                    cursor='hand2', activebackground='#3047ff', fg='white')
     change_password_button.pack(anchor="w", padx=10, pady=(10, 40))
+    
+    def upload_document():
+        uploadDocumentsWindow = UploadDocumentsWindow(user_id) 
+
+    document_uplod_button = tk.Button(root, text="upload documents", font=("yu gothic ui", 13, "bold"), width=25, bd=0, bg='#3047ff',
+                                   cursor='hand2', activebackground='#3047ff', fg='white',command = upload_document)
+    document_uplod_button.pack(anchor="w", padx=10, pady=(10, 40))
+
+    # def upload_document():
+        
+
 
     root.mainloop()
 if __name__ =='__main__':
-    main()
+    main("S353356847444")

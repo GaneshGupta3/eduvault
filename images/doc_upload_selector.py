@@ -60,7 +60,7 @@ class UploadDocumentsWindow:
 
         # For now, just print the selected values
         print(f"Uploading file for UID {self.uid}, Document Name: {document_name}, Category: {category}")
-
+        self.window.destroy()
         # You can uncomment the above line and remove the print statement when integrating with your actual upload logic
 
 # Example usage
