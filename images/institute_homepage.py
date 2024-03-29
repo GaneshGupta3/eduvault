@@ -10,9 +10,11 @@ def open_institute_homepage():
 
     def viewDocuments():
         print("calling load view docs")
+        window.destroy()
         load_institute_view_docs()
 
     def report():
+        window.destroy()
         load_report_page()
 
     height = 650
