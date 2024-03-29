@@ -128,7 +128,7 @@ def open_report_page():
     # ================back button ====================#
     def load_institute_homepage():
         window.destroy()
-
+    
         open_institute_homepage()
 
         

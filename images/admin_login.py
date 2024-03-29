@@ -57,7 +57,7 @@ def submit(institute_id,institute_password,window):
     password = institute_password
     open_admin_homepage()
     
-    
+
    
 
 

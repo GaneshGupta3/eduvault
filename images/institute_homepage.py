@@ -15,6 +15,7 @@ def open_institute_homepage():
 
     def report():
         window.destroy()
+        
         open_report_page()
 
 
