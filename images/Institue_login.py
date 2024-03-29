@@ -27,6 +27,7 @@ from current_user_info import *
 from demo2 import *
 from student_profile import *
 from institute_homepage import *
+from institute_register import *
 
 
 
@@ -148,6 +149,9 @@ def submit(institute_id,institute_password,window):
 class LoginPage:
     def __init__(self, window):
         self.window = window
+        
+        
+
         self.window.geometry('1166x718')
         self.window.resizable(0, 0)
         self.window.state('zoomed')
@@ -241,13 +245,17 @@ class LoginPage:
         
         
         # =========== Sign Up ==================================================
+        def load_institute_register():
+            self.window.destroy()
+            load_register()
+
         self.sign_label = Label(self.lgn_frame, text='No account yet?', font=("yu gothic ui", 11, "bold"),
                                 relief=FLAT, borderwidth=0, background="#040405", fg='white')
         self.sign_label.place(x=550, y=560)
 
         self.signup_img = ImageTk.PhotoImage(file='images\\register.png')
         self.signup_button_label = Button(self.lgn_frame, image=self.signup_img, bg='#98a65d', cursor="hand2",
-                                          borderwidth=0, background="#040405", activebackground="#040405")
+                                          borderwidth=0, background="#040405", activebackground="#040405",command=load_institute_register)
         self.signup_button_label.place(x=670, y=555, width=111, height=35)
 
         # ========================================================================
@@ -288,6 +296,7 @@ class LoginPage:
 
         self.footer_label = Label(self.footer_frame, text='© 2024 EduVault. All rights reserved.', font=("Helvetica", 10), bg='#040405', fg='white')
         self.footer_label.pack(pady=5)
+
 
     def show(self):
         self.hide_button = Button(self.lgn_frame, image=self.hide_image, command=self.hide, relief=FLAT,
