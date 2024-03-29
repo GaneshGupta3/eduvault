@@ -1,7 +1,7 @@
-from tkinter import *
+from tkinter import Tk, Frame, Label, Button, BOTTOM, FLAT,Entry,Canvas
 # from tkinter import messagebox
 
-
+from institute_view_docs import *
 from institute_view_docs import *
 from report_frontend import *
 
@@ -15,7 +15,8 @@ def open_institute_homepage():
 
     def report():
         window.destroy()
-        load_report_page()
+        open_report_page()
+
 
     height = 650
     width = 1240

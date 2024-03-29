@@ -21,6 +21,7 @@ from password import passFunc
 from uidGenerator import uid
 from dbConnection import *
 from storage_quota import *
+from Student_login import *
 
 
 
@@ -155,6 +156,9 @@ def submit_form():
     studentSignup()
 
 window = Tk()
+def openStudentLogin():
+    window.destroy()
+    open_student_login()
 
 height = 650
 width = 1240
@@ -481,7 +485,8 @@ back_button = Button(
     borderwidth=0,
     highlightthickness=0, 
     activebackground="#272A37",
-    cursor="hand2"
+    cursor="hand2",
+    command=openStudentLogin
 )
 back_button.place(x=210, y=555, width=160, height=30)
 

@@ -1,14 +1,7 @@
-import mysql.connector
 import tkinter as tk
 
 from tkinter import messagebox
 import time
-
-def view():
-     print("view button clicked")
-
-def approve():
-    print("approve button clicked")
 
 #set value of n (no of pending approvals)
 global n
@@ -21,10 +14,10 @@ class Example(tk.LabelFrame):
 
         data = [
             # Nr. Name  Active
-            [1,"abccewjc", "234214123 "],
-            [2,"dsjcknsd ", "21413535"],[3,"dcsdvsddf", "34364647"],
-            [4," jcdkcn", "4354765"],[5,"fdvdfbf", "24235737"],
-            [6,"ckc", "658769870"]
+            ["dsfsvfdbtt",123],
+            ["dscdvsfvfsdv",234],["dsfvbtb",678],
+            ["fdfgbgf",456],["dsfbdfgnn",12],
+            ["dvrgbdfgb",123]
             ]
 
 
@@ -32,25 +25,19 @@ class Example(tk.LabelFrame):
         self.grid_columnconfigure(1, weight=1)
 
         tk.Label(self,
-                text="Sr. No",
+                text="marksheet Name",
                 fg="#FFFFFF",
                 padx=30, 
                 font=("yu gothic ui bold", 20 * -1),
                 bg="#272A37").grid(row=0, column=0, sticky="ew")
         
         tk.Label(self, 
-                text="Name",
+                text="Size (in kb)",
                 padx=30,
                 fg="#FFFFFF",
                 font=("yu gothic ui bold", 20 * -1),
                 bg="#272A37").grid(row=0, column=1, sticky="ew")
         
-        tk.Label(self,
-                text="UID",
-                padx=100,
-                fg="#FFFFFF",
-                font=("yu gothic ui bold", 20 * -1),
-                bg="#272A37").grid(row=0, column=2, sticky="ew")
 
         tk.Label(self,
                 text="  View  ",
@@ -59,14 +46,14 @@ class Example(tk.LabelFrame):
                 bg="#272A37").grid(row=0, column=3, sticky="ew")
 
         tk.Label(self,
-                text="  Approve  ",
+                text="  Delete ",
                 fg="#FFFFFF",
                 font=("yu gothic ui bold", 20 * -1),
                 bg="#272A37").grid(row=0, column=4, sticky="ew")
 
         row = 1
 
-        for (nr, name, uid) in data:
+        for (nr, name) in data:
           
             nr_label = tk.Label(self,text=str(nr),
                                 fg="#FFFFFF",
@@ -79,11 +66,6 @@ class Example(tk.LabelFrame):
                                   font=("yu gothic ui bold", 20 * -1),
                                   bg="#272A37")
 
-            uid_label = tk.Label(self, 
-                                  text=str(uid),
-                                  fg="#FFFFFF",
-                                  font=("yu gothic ui bold", 20 * -1),
-                                  bg="#272A37")
 
             buttonImage1 = tk.PhotoImage(file="assets\\approval_view.png")
             action_button1 = tk.Button(self,
@@ -92,20 +74,18 @@ class Example(tk.LabelFrame):
                                       highlightthickness=0,
                                       relief="flat",
                                       activebackground="#272A37",
-                                      cursor="hand2",
-                                      command=view
+                                      cursor="hand2"
                                       )
             action_button1.image=buttonImage1
             
-            buttonImage2 = tk.PhotoImage(file="assets\\approval_approve.png")
+            buttonImage2 = tk.PhotoImage(file="assets\\delete.png")
             action_button2 = tk.Button(self,
                                       image=buttonImage2,
                                       borderwidth=0,
                                       highlightthickness=0,
                                       relief="flat",
                                       activebackground="#272A37",
-                                      cursor="hand2",
-                                      command=approve
+                                      cursor="hand2"
                                       )
             action_button2.image=buttonImage2
             
@@ -113,14 +93,15 @@ class Example(tk.LabelFrame):
 
             nr_label.grid(row=row, column=0, sticky="ew")
             name_label.grid(row=row, column=1, sticky="ew")
-            uid_label.grid(row=row, column=2, sticky="ew")
+       
             action_button1.grid(row=row, column=3, sticky="ew")
             action_button2.grid(row=row, column=4, sticky="ew")
 
             row += 1
       
 
-def load_admin_approval():
+
+def open_marksheets(user_id):
     root = tk.Tk()
     
     height = (n)*42 + 35
@@ -137,5 +118,7 @@ def load_admin_approval():
 
     root.mainloop()
 
+
 if __name__ == "__main__":
-    load_admin_approval()
+    open_marksheets()
+    

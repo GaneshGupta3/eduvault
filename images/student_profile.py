@@ -7,6 +7,7 @@ from PIL import Image, ImageTk
 from current_user_info import *
 from dbConnection import *
 from doc_upload_selector import *
+from student_view_docs import *#////////////////////////////this is giving error not allowing login student to run
 
 
 def main(user_id):
@@ -29,7 +30,7 @@ def main(user_id):
         return user_info
 
     def open_profile_window():
-        user_info = fetch_user_info()
+        user_info = fetch_user_info()  
 
     # Create a new window for the profile with increased size
         profile_window = tk.Toplevel(root)
@@ -161,62 +162,8 @@ def main(user_id):
         note_label.place(relx=0.05, rely=0.8)
 
 
-    def open_document_window():
-        document_window = tk.Toplevel(root)
-        document_window.title("View Documents")
-        document_window.geometry("800x500")
 
-        background_image = Image.open("images/background1.png")
-        background_photo = ImageTk.PhotoImage(background_image)
-
-        background_label = tk.Label(document_window, image=background_photo)
-        background_label.image = background_photo
-        background_label.place(x=0, y=0, relwidth=1, relheight=1)
-
-        frame = tk.Frame(document_window, bg="#B6B6B4")
-        frame.place(relx=0.5, rely=0.2, relwidth=0.7, relheight=0.6, anchor="n")
     
-    # Add image to the header line
-        email_icon_image = Image.open("assets//headerText_image.png")
-        email_icon_photo = ImageTk.PhotoImage(email_icon_image)
-
-        header_frame = tk.Frame(document_window, bg="#002244")
-        header_frame.pack(fill="x")
-
-        email_icon_label = tk.Label(header_frame, image=email_icon_photo, bg="#002244")
-        email_icon_label.image = email_icon_photo
-        email_icon_label.pack(side="left", padx=(10, 5))
-
-        header_label = tk.Label(header_frame, text="Your Documents!", fg="white", bg="#002244", font=("yu gothic ui bold", 22))
-        header_label.pack(side="left", padx=(0, 10), pady=10)
- 
-        personal_label = tk.Label(frame, text="Personal Documents:", fg="black", bg="#B6B6B4", font=("yu gothic ui bold", 18))
-        personal_label.grid(row=0, column=0, padx=10, pady=10)
-
-        view_personal_button = tk.Button(frame, text="View", bg="#3047ff", fg="white", font=("Arial", 14), command=view_personal_docs)
-        view_personal_button.grid(row=0, column=1, padx=10, pady=10)
-
-        marksheets_label = tk.Label(frame, text="Marksheets:", fg="black", bg="#B6B6B4", font=("yu gothic ui bold", 18))
-        marksheets_label.grid(row=1, column=0, padx=10, pady=10)
- 
-        view_marksheets_button = tk.Button(frame, text="View", bg="#3047ff", fg="white", font=("Arial", 14), command=view_marksheets)
-        view_marksheets_button.grid(row=1, column=1, padx=10, pady=10)
- 
-        certificates_label = tk.Label(frame, text="Certificates:", fg="black", bg="#B6B6B4", font=("yu gothic ui bold", 18))
-        certificates_label.grid(row=2, column=0, padx=10, pady=10)
-
-        view_certificates_button = tk.Button(frame, text="View", bg="#3047ff", fg="white", font=("Arial", 14), command=view_certificates)
-        view_certificates_button.grid(row=2, column=1, padx=10, pady=10)
-
-    def view_personal_docs():
-         print("View Personal Documents")
-
-    def view_marksheets():
-         print("View Marksheets")
-
-    def view_certificates():
-         print("View Certificates")
-
 
 # Create the main window
     root = tk.Tk()
@@ -247,6 +194,19 @@ def main(user_id):
                                 cursor='hand2', activebackground='#3047ff', fg='white', command=open_profile_window)
     view_profile_button.pack(anchor="w", padx=10, pady=(20, 40))
 
+    def open_document_window():
+        root.destroy()
+        open_view_docs(user_id)
+
+    def view_personal_docs():
+         print("View Personal Documents")
+
+    def view_marksheets():
+         print("View Marksheets")
+
+    def view_certificates():
+         print("View Certificates")
+
     view_document_button = tk.Button(root, text="View Document", font=("yu gothic ui", 13, "bold"), width=25, bd=0, bg='#3047ff',
                                  cursor='hand2', activebackground='#3047ff', fg='white', command=open_document_window)
     view_document_button.pack(anchor="w", padx=10, pady=(10, 40))
@@ -271,5 +231,7 @@ def main(user_id):
 
 
     root.mainloop()
+
+    
 if __name__ =='__main__':
     main("S353356847444")

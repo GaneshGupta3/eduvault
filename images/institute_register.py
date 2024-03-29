@@ -1,4 +1,4 @@
-from tkinter import Tk, Frame, Label, Button, BOTTOM, FLAT,Entry,Canvas
+from tkinter import Tk,Frame,Label,Button,BOTTOM,FLAT,Entry,Canvas
 from tkinter import messagebox
 from tkinter import messagebox as mb
 import datetime
@@ -8,8 +8,7 @@ from dbConnection import *
 from uidGenerator import *
 from password import *
 from Institue_login import *
-
-
+from tkinter import PhotoImage
 
 
 
@@ -333,7 +332,7 @@ def load_register():
     # =============== Back Button ====================
     back_button = Button(
         bg_image,
-        text="Back",
+        text="Back to login page",
         bg="#3D404B",
         fg="#FFFFFF",
         font=("yu gothic ui", 12),

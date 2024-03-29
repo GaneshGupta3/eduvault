@@ -1,4 +1,4 @@
-from tkinter import *
+from tkinter import Tk, Frame, Label, Button, BOTTOM, FLAT,Entry,Canvas
 from PIL import ImageTk, Image
 
 
@@ -11,7 +11,7 @@ class LoginPage:
         self.window.title('Login Page')
 
         # Background Image
-        self.bg_frame = Image.open('./background2.png')
+        self.bg_frame = Image.open('.\\background2.png')
         photo = ImageTk.PhotoImage(self.bg_frame)
         self.bg_panel = Label(self.window, image=photo)
         self.bg_panel.image = photo

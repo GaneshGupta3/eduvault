@@ -1,6 +1,7 @@
 from tkinter import *
 from tkinter import messagebox
 from PIL import ImageTk, Image
+from institute_homepage import *
 
 
 def load_institute_view_docs():
@@ -121,8 +122,23 @@ def load_institute_view_docs():
         font=("yu gothic ui SemiBold", 13),
     )
     msg_entry.place(x=8, y=42, width=580, height=227)
-
-
+       ############################# backbutton #################
+    def load_institute_homepage():
+        window.destroy()
+        open_institute_homepage()
+        
+    buttonImage2 = PhotoImage(file="assets\\back.png")
+    button2 = Button(
+        bg_image,
+        image=buttonImage2,
+        borderwidth=0,
+        highlightthickness=0,
+        relief="flat",
+        activebackground="#272A37",
+        cursor="hand2",
+        command=load_institute_homepage
+    )
+    button2.place(x=290, y=575, width=60, height=55)
 
     window.resizable(False, False)
     window.mainloop()

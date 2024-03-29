@@ -1,10 +1,10 @@
 from tkinter import *
 from tkinter import messagebox
 from PIL import ImageTk, Image
+from institute_homepage import *
 
 
-
-def load_report_page():
+def open_report_page():
     window = Tk()
 
     def report():
@@ -125,9 +125,30 @@ def load_report_page():
     )
     button1.place(x=200, y=550, width=320, height=65)
 
+    # ================back button ====================#
+    def load_institute_homepage():
+        window.destroy()
+
+        open_institute_homepage()
+
+        
+    buttonImage2 = PhotoImage(file="assets\\back.png")
+    button2 = Button(
+        bg_image,
+        image=buttonImage2,
+        borderwidth=0,
+        highlightthickness=0,
+        relief="flat",
+        activebackground="#272A37",
+        cursor="hand2",
+        command=load_institute_homepage
+    )
+    button2.place(x=130, y=560, width=60, height=55)
+
+
     window.resizable(False, False)
     window.mainloop()
 
 
 if __name__ == '__main__':
-    load_report_page()
+    open_report_page()

@@ -1,4 +1,4 @@
-from tkinter import *
+from tkinter import Tk, Frame, Label, Button, BOTTOM, FLAT,Entry,Canvas
 from dbConnection import *
 from login_activity import get_last_login
 from datetime import datetime
