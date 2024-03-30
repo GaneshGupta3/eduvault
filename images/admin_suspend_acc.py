@@ -1,14 +1,32 @@
-from tkinter import Tk, Frame, Label, Button, BOTTOM, FLAT,Entry,Canvas
+from tkinter import Tk, Frame, Label, Button, BOTTOM, FLAT,Entry,Canvas,StringVar
 from tkinter import messagebox
 from admin_homepage import *
+from tkinter import PhotoImage
+from current_user_info import *
+from admin import *
 
 
 def open_admin_suspend_acc():
+    
     def fetch():
-        print("fetch button is clicked")
+        to_be_suspended_uid = str(uid_entry.get())
+        to_be_suspended_type = str(uid_entry.get()[0])
+        print(type(to_be_suspended_uid))
+        print(type(to_be_suspended_type))
+        currentuserInfo = currentUserInfo(to_be_suspended_uid,to_be_suspended_type)
+        currentUserName = currentuserInfo.name
+        print(currentUserName)
+        print(type(currentUserName))
+        name_output_entry.delete(0, "end")
+        # Insert the currentUserName
+        name_output_entry.insert(0, currentUserName)
+
+        
 
     def suspend():
-        print("suspend button is clicked")
+        admin = Admin()
+        to_be_suspended_uid = str(uid_entry.get())
+        admin.suspend_unsuspend(to_be_suspended_uid,1)
 
     
 
@@ -131,35 +149,9 @@ def open_admin_suspend_acc():
 
     name_output_entry.place(x=8, y=17, width=140, height=27)
 
-    # ================ uid Output ====================
-    image4 = PhotoImage(file="assets\\email.png")
-    image4_Label = Label(
-        bg_image,
-        image=image4,
-        bg="#272A37"
-    )
-    image4_Label.place(x=60, y=340)
-
-    uid_text = Label(
-        image4_Label,
-        text="UID",
-        fg="#FFFFFF",
-        font=("yu gothic ui SemiBold", 13 * -1),
-        bg="#3D404B"
-    )
-    uid_text.place(x=25, y=0)
-
-    uid_output_entry = Entry(
-        image4_Label,
-        bd=0,
-        bg="#3D404B",
-        highlightthickness=0,
-        font=("yu gothic ui SemiBold", 16 * -1),
-    )
-
-    uid_output_entry.place(x=8, y=17, width=140, height=27)
 
     # =============== Button2 ====================
+
     buttonImage2 = PhotoImage(file="assets\\suspend.png")
     button2 = Button(
         bg_image,

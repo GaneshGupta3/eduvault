@@ -5,7 +5,7 @@ from institute_view_docs import *
 from institute_view_docs import *
 from report_frontend import *
 
-def open_institute_homepage():
+def open_institute_homepage(userid):
     window = Tk()
 
     def viewDocuments():
@@ -16,7 +16,8 @@ def open_institute_homepage():
     def report():
         window.destroy()
         
-        open_report_page()
+        print(userid)
+        open_report_page(userid)
 
 
     height = 650
@@ -88,4 +89,4 @@ def open_institute_homepage():
 
 
 if __name__ == '__main__':
-    open_institute_homepage()
+    open_institute_homepage("I902523114842")

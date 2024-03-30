@@ -80,7 +80,7 @@ def show_otp_dialog(userid, window):
             # userMainWindow.run()
             print("opening institute profile page")
             # main(userid)
-            open_institute_homepage()
+            open_institute_homepage(userid)
             
             return
         else:

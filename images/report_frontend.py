@@ -2,13 +2,13 @@ from tkinter import *
 from tkinter import messagebox
 from PIL import ImageTk, Image
 from institute_homepage import *
+from report import *
 
 
-def open_report_page():
+def open_report_page(userid):
     window = Tk()
 
-    def report():
-        print("report button is clicked")
+    
 
     height = 650
     width = 1240
@@ -112,6 +112,12 @@ def open_report_page():
 
 
     # =============== Button1 ====================
+    def report():
+        report = Report()
+        student_uid = uid_entry.get()
+        msg = msg_entry.get("1.0", "end-1c")
+        report.submit_report(userid,student_uid,msg)
+        print("report submitted")
     buttonImage1 = PhotoImage(file="assets\\report.png")
     button1 = Button(
         bg_image,
@@ -151,4 +157,4 @@ def open_report_page():
 
 
 if __name__ == '__main__':
-    open_report_page()
+    open_report_page("I902523114842")

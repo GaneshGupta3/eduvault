@@ -8,6 +8,7 @@ from current_user_info import *
 from dbConnection import *
 from doc_upload_selector import *
 from student_view_docs import *#////////////////////////////this is giving error not allowing login student to run
+from student_share_docs import *
 
 
 def main(user_id):
@@ -74,93 +75,6 @@ def main(user_id):
             label = tk.Label(profile_window, text=f"{key}: {value}\n", bg="#272A37", fg="white", font=("yu gothic ui bold", 14))
             label.pack(anchor="w", padx=10, pady=(0, 10))  # Add vertical spacing between lines
 
-    def open_share_documents_window():
-        share_documents_window = tk.Toplevel(root)
-        share_documents_window.title("Share Documents")
-        share_documents_window.geometry("900x600")
-
-        background_image = Image.open("images/background2.png")
-        background_photo = ImageTk.PhotoImage(background_image)
-
-        background_label = tk.Label(share_documents_window, image=background_photo)
-        background_label.image = background_photo
-        background_label.place(x=0, y=0, relwidth=1, relheight=1)
-    
-    
-        frame = tk.Frame(share_documents_window, bg="#B6B6B4")
-        frame.place(relx=0.5, rely=0.2, relwidth=0.9, relheight=0.6, anchor="n")
-
-    # Load the header text image
-        header_text_image = Image.open("assets//headerText_image.png")
-        header_text_photo = ImageTk.PhotoImage(header_text_image)
-
-    # Create a frame to hold the image and welcome label
-        header_frame = tk.Frame(share_documents_window, bg="#B6B6B4")
-        header_frame.pack(anchor="w", padx=10, pady=10)
-
-    # Create a label for the header text image
-        header_text_label = tk.Label(header_frame, image=header_text_photo, bg="#B6B6B4")
-        header_text_label.image = header_text_photo  # Retain a reference to avoid garbage collection
-        header_text_label.pack(side="left")
-
-    # Create a label for the welcome message
-        welcome_label = tk.Label(header_frame, text="Welcome to Share Documents!", fg="#002244", bg="#B6B6B4", font=("yu gothic ui", 20))
-        welcome_label.pack(side="left", padx=(10, 0))
-
-    # Add column names
-        column_names_frame = tk.Frame(share_documents_window, bg="#B6B6B4")
-        column_names_frame.place(relx=0.05, rely=0.15, relwidth=0.9)
-
-        doc_name_column_label = tk.Label(column_names_frame, text="\nDOCUMENT NAMES\t", fg="#002244", bg="#B6B6B4", font=("yu gothic ui", 14, "bold"))
-        doc_name_column_label.grid(row=0, column=0, padx=(0, 50))
-
-        doc_size_column_label = tk.Label(column_names_frame, text="\n\tSIZE", fg="#002244", bg="#B6B6B4", font=("yu gothic ui", 14, "bold"))
-        doc_size_column_label.grid(row=0, column=5, padx=(0, 50))
-
-    # Dummy data for demonstration
-        documents_data = [
-        {"name": "Document1.pdf", "size": "1.2 MB"},
-        {"name": "Document2.docx", "size": "800 KB"},
-        {"name": "Document3.jpg", "size": "500 KB"}
-    ]
-    
-    # List to store checkbox variables
-        checkbox_vars = []
-
-    # Create labels and checkboxes for each document with name, size, and a view button
-        for index, doc_data in enumerate(documents_data, start=1):
-        # Create a checkbox variable for each document
-            checkbox_var = tk.IntVar()
-            checkbox_vars.append(checkbox_var)
-        
-        # Create checkbox with larger size
-            checkbox = tk.Checkbutton(share_documents_window, variable=checkbox_var, bg="#B6B6B4", activebackground="#B6B6B4", height=2, width=5)
-            checkbox.place(relx=0.05, rely=0.3 + index * 0.1)
-        
-            doc_name_label = tk.Label(share_documents_window, text=doc_data["name"], fg="#002244", bg="#B6B6B4", font=("yu gothic ui", 14,"bold"))
-            doc_name_label.place(relx=0.1, rely=0.3 + index * 0.1)
-
-            doc_size_label = tk.Label(share_documents_window, text=doc_data["size"], fg="#002244", bg="#B6B6B4", font=("yu gothic ui", 14,"bold"))
-            doc_size_label.place(relx=0.5, rely=0.3 + index * 0.1)
-
-            view_button = tk.Button(share_documents_window, text="View", font=("yu gothic ui", 14, "bold"), bd=0, bg='#3047ff',
-                                    cursor='hand2', activebackground='#3047ff', fg='white')
-            view_button.place(relx=0.8, rely=0.3 + index * 0.1)
-
-    # Add a Share button
-        share_button = tk.Button(share_documents_window, text="Share", font=("yu gothic ui", 14, "bold"), bd=0, bg='#000042',
-                              cursor='hand2', activebackground='#7B68EE', fg='white')
-        share_button.place(relx=0.3, rely=0.9)
-
-    # Add a back button
-        back_button = tk.Button(share_documents_window, text="Back", font=("yu gothic ui", 14, "bold"), bd=0, bg='#000042',
-                            cursor='hand2', activebackground='#3047ff', fg='white', command=share_documents_window.destroy)
-        back_button.place(relx=0.6, rely=0.9)
-    
-    # Add a note message
-        note_label = tk.Label(share_documents_window, text="Note: The documents selected by checkbox will be shared", fg="#002244", bg="#B6B6B4", font=("yu gothic ui", 12,"bold"))
-        note_label.place(relx=0.05, rely=0.8)
-
 
 
     
@@ -169,6 +83,10 @@ def main(user_id):
     root = tk.Tk()
     root.geometry("1166x600")
     root.configure(bg="black")
+
+    def open_share_documents_window():
+        root.destroy()
+        open_student_shate_docs()
 
     frame = tk.Frame(root, bg="black")
     frame.pack(anchor="nw", padx=10, pady=10)
