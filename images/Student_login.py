@@ -151,7 +151,7 @@ def open_student_login():
     Login_headerText_image_label1 = Label(
         bg_imageLogin,
         image=Login_headerText_image_left,
-        bg="#040405"
+        bg="#272A37"
     )
     Login_headerText_image_label1.place(x=60, y=45)
 
@@ -160,7 +160,7 @@ def open_student_login():
         text="EduVault",
         fg="#FFFFFF",
         font=("yu gothic ui bold", 20 * -1),
-        bg="#040405"
+        bg="#272A37"
     )
     Login_headerText1.place(x=110, y=45)
 
@@ -170,7 +170,7 @@ def open_student_login():
         text="Login to continue",
         fg="#FFFFFF",
         font=("yu gothic ui Bold", 28 * -1),
-        bg="#040405"
+        bg="#272A37"
     )
     loginAccount_header.place(x=75, y=121)
 
@@ -180,7 +180,7 @@ def open_student_login():
         text="Not a Member?",
         fg="#FFFFFF",
         font=("yu gothic ui Regular", 15 * -1),
-        bg="dark grey"
+        bg="#272A37"
     )
     loginText.place(x=75, y=187)
 
@@ -190,7 +190,7 @@ def open_student_login():
         text="Student Register",
         fg="#206DB4",
         font=("yu gothic ui Bold", 15 * -1),
-        bg="#040405",
+        bg="#272A37",
         bd=0,   
         cursor="hand2",
         activebackground="#272A37",
@@ -207,7 +207,7 @@ def open_student_login():
         text="Institute Register",
         fg="#206DB4",
         font=("yu gothic ui Bold", 15 * -1),
-        bg="#040405",
+        bg="#272A37",
         bd=0,
         cursor="hand2",
         activebackground="#272A37",
@@ -221,7 +221,7 @@ def open_student_login():
     Login_emailName_image_Label = Label(
         bg_imageLogin,
         image=Login_emailName_image,
-        bg="#040405"
+        bg="#272A37"
     )
     Login_emailName_image_Label.place(x=76, y=242)
 
@@ -256,7 +256,7 @@ def open_student_login():
     Login_passwordName_image_Label = Label(
         bg_imageLogin,
         image=Login_passwordName_image,
-        bg="#040405"
+        bg="#272A37"
     )
     Login_passwordName_image_Label.place(x=80, y=330)
 
