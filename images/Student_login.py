@@ -194,8 +194,7 @@ def open_student_login():
         bd=0,   
         cursor="hand2",
         activebackground="#272A37",
-        activeforeground="#ffffff",
-        # command=studentSignup
+        activeforeground="#ffffff"
     )
     switchSignup.place(x=220, y=185, width=150, height=35)
 
