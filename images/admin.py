@@ -1,4 +1,5 @@
 from dbConnection import *
+from tkinter import messagebox
 from email_send import *
 class Admin:
     
@@ -133,31 +134,37 @@ class Admin:
         
     @staticmethod
     def suspend_unsuspend(uid, action):
-        
-        dbobj = db()
-        mydb, cursor = dbobj.dbconnect("credentials")
-        try:
-            if uid.startswith("S"):
-                # If uid starts with "S", update the suspended column in the student table
-                update_query = "UPDATE student SET suspended = %s WHERE uid = %s"
-                cursor.execute(update_query, (action, uid))
-            elif uid.startswith("I"):
-                # If uid starts with "I", update the suspended column in the institute table
-                update_query = "UPDATE institute SET suspended = %s WHERE uid = %s"
-                cursor.execute(update_query, (action, uid))
-            else:
-                print("Invalid uid format. Should start with 'S' or 'I'.")
+        if len(uid)!= 13:
+            messagebox.showerror("Invalid User ID", "Please enter a valid User ID.")
+        else:
+            dbobj = db()
+            mydb, cursor = dbobj.dbconnect("credentials")
+            try:
+                if uid.startswith("S"):
+                    # If uid starts with "S", update the suspended column in the student table
+                    update_query = "UPDATE student SET suspended = %s WHERE uid = %s"
+                    cursor.execute(update_query, (action, uid))
+                elif uid.startswith("I"):
+                    # If uid starts with "I", update the suspended column in the institute table
+                    update_query = "UPDATE institute SET suspended = %s WHERE uid = %s"
+                    cursor.execute(update_query, (action, uid))
+                else:
+                    print("Invalid uid format. Should start with 'S' or 'I'.")
 
-            # Commit the changes to the database
-            mydb.commit()
-            print(f"Suspended/Unsuspended user with UID: {uid}")
+                # Commit the changes to the database
+                mydb.commit()
+                if action == 1 :
+                    print(f"Suspended user with UID: {uid}")
+                else:
+                    print(f"Unsuspended user with UID: {uid}")
+                
 
-        except Exception as e:
-            print(f"Error updating suspended status: {e}")
-        finally:
-            # Close the database connection
-            if mydb:
-                mydb.close()
+            except Exception as e:
+                print(f"Error updating suspended status: {e}")
+            finally:
+                # Close the database connection
+                if mydb:
+                    mydb.close()
 
 # # Example usage:
 # approval_instance = Admin()

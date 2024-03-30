@@ -55,7 +55,15 @@ from admin_homepage import *
 def submit(institute_id,institute_password,window):
     userid = institute_id
     password = institute_password
-    open_admin_homepage()
+    if len(userid)!=13:
+        messagebox.showerror("Invalid User ID", "Please enter a valid User ID.")
+        page()
+    else:
+        if(len(institute_password)==0):
+            messagebox.showerror("Invalid password", "Please enter a valid password.")
+            page()
+        else:
+            open_admin_homepage(userid)
     
 
    

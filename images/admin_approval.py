@@ -1,14 +1,29 @@
+
 import mysql.connector
 import tkinter as tk
+from current_user_info import *
+from admin import *
 
 from tkinter import messagebox
 import time
 
-def view():
-     print("view button clicked")
+def view(uid):
+     print(uid)
+     currentuserinfo = currentUserInfo(uid,"I")
+     name = currentuserinfo.name
+     tan = currentuserinfo.tan
+     email = currentuserinfo.email
+     phone = currentuserinfo.phone
 
-def approve():
-    print("approve button clicked")
+     info_message = f"UID: {uid}\nName: {name}\nTAN: {tan}\nEmail: {email}\nPhone: {phone}"
+     messagebox.showinfo("Information", info_message)
+
+admin = Admin
+institutes_not_approved = admin.pending_approval_list()
+print(institutes_not_approved)
+def approve(uid):
+    admin = Admin()
+    admin.grant_approval(uid)
 
 #set value of n (no of pending approvals)
 global n
@@ -21,10 +36,10 @@ class Example(tk.LabelFrame):
 
         data = [
             # Nr. Name  Active
-            [1,"abccewjc", "234214123 "],
-            [2,"dsjcknsd ", "21413535"],[3,"dcsdvsddf", "34364647"],
-            [4," jcdkcn", "4354765"],[5,"fdvdfbf", "24235737"],
-            [6,"ckc", "658769870"]
+            [1,institutes_not_approved[0][0], institutes_not_approved[0][1]],
+            [2,institutes_not_approved[1][0], institutes_not_approved[1][1]],[3,institutes_not_approved[2][0], institutes_not_approved[2][1]],
+            [4,institutes_not_approved[3][0], institutes_not_approved[3][1]],[5,institutes_not_approved[4][0], institutes_not_approved[4][1]],
+            [6,institutes_not_approved[5][0], institutes_not_approved[5][1]]
             ]
 
 
@@ -93,7 +108,7 @@ class Example(tk.LabelFrame):
                                       relief="flat",
                                       activebackground="#272A37",
                                       cursor="hand2",
-                                      command=view
+                                      command=lambda uid=uid: view(uid)
                                       )
             action_button1.image=buttonImage1
             
@@ -105,7 +120,7 @@ class Example(tk.LabelFrame):
                                       relief="flat",
                                       activebackground="#272A37",
                                       cursor="hand2",
-                                      command=approve
+                                      command=lambda uid=uid: approve(uid)
                                       )
             action_button2.image=buttonImage2
             

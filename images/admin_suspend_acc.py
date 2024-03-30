@@ -9,17 +9,21 @@ from admin import *
 def open_admin_suspend_acc():
     
     def fetch():
-        to_be_suspended_uid = str(uid_entry.get())
-        to_be_suspended_type = str(uid_entry.get()[0])
-        print(type(to_be_suspended_uid))
-        print(type(to_be_suspended_type))
-        currentuserInfo = currentUserInfo(to_be_suspended_uid,to_be_suspended_type)
-        currentUserName = currentuserInfo.name
-        print(currentUserName)
-        print(type(currentUserName))
-        name_output_entry.delete(0, "end")
-        # Insert the currentUserName
-        name_output_entry.insert(0, currentUserName)
+        
+        if len(uid_entry.get())!= 13:
+            messagebox.showerror("Invalid User ID", "Please enter a valid User ID.")
+        else:    
+            to_be_suspended_uid = str(uid_entry.get())
+            to_be_suspended_type = str(uid_entry.get()[0])
+            print(type(to_be_suspended_uid))
+            print(type(to_be_suspended_type))
+            currentuserInfo = currentUserInfo(to_be_suspended_uid,to_be_suspended_type)
+            currentUserName = currentuserInfo.name
+            print(currentUserName)
+            print(type(currentUserName))
+            name_output_entry.delete(0, "end")
+            # Insert the currentUserName
+            name_output_entry.insert(0, currentUserName)
 
         
 
@@ -27,6 +31,10 @@ def open_admin_suspend_acc():
         admin = Admin()
         to_be_suspended_uid = str(uid_entry.get())
         admin.suspend_unsuspend(to_be_suspended_uid,1)
+    def unsuspend():
+        admin = Admin()
+        to_be_suspended_uid = str(uid_entry.get())
+        admin.suspend_unsuspend(to_be_suspended_uid,0)
 
     
 
@@ -164,6 +172,22 @@ def open_admin_suspend_acc():
         command=suspend
     )
     button2.place(x=100, y=430, width=333, height=65)
+# ==============unsuspend button ================
+    buttonImage4 = PhotoImage(file="assets\\unsuspend.png")
+    button4 = Button(
+        bg_image,
+        image=buttonImage4,
+        borderwidth=0,
+        highlightthickness=0,
+        relief="flat",
+        activebackground="#272A37",
+        cursor="hand2",
+        command=unsuspend
+    )
+    button4.place(x=500, y=430, width=333, height=65)
+
+
+
 
     # =============== Button3 ====================
     buttonImage3 = PhotoImage(file="assets\\back.png")

@@ -6,7 +6,7 @@ from admin_approval import *
 from admin_suspend_acc import *
 
 
-def open_admin_homepage():
+def open_admin_homepage(user_id):
     window = Tk()
 
     def pendingInstituteApproval():
@@ -107,4 +107,4 @@ def open_admin_homepage():
 
 
 if __name__ == '__main__':
-    open_admin_homepage()
+    open_admin_homepage("A902523114842")

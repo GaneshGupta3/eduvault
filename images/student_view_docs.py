@@ -1,7 +1,7 @@
 from tkinter import Tk, Frame, Label, Button, BOTTOM, FLAT,Entry,Canvas
 from tkinter import messagebox
 from tkinter import PhotoImage
-# from student_profile import main///////////not allowing to run student login page
+from student_profile import *#///////////not allowing to run student login page
 from student_personal_docs import *
 from student_certificate import *
 from student_marksheet import *

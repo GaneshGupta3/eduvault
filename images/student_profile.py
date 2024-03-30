@@ -36,7 +36,7 @@ def main(user_id):
     # Create a new window for the profile with increased size
         profile_window = tk.Toplevel(root)
         profile_window.title("Profile")
-        profile_window.geometry("800x400")  # Increased size
+        profile_window.geometry("1166x600") # Increased size
 
     # Set background color
         profile_window.configure(bg="#272A37")
@@ -138,7 +138,7 @@ def main(user_id):
     change_password_button.pack(anchor="w", padx=10, pady=(10, 40))
     
     def upload_document():
-        uploadDocumentsWindow = UploadDocumentsWindow(user_id) 
+        uploadDocumentsWindow = UploadDocumentsWindow(user_id)
 
     document_uplod_button = tk.Button(root, text="upload documents", font=("yu gothic ui", 13, "bold"), width=25, bd=0, bg='#3047ff',
                                    cursor='hand2', activebackground='#3047ff', fg='white',command = upload_document)
