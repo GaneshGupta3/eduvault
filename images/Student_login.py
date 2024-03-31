@@ -1,4 +1,4 @@
-from tkinter import *
+from tkinter import Tk, Frame, Label, Button, BOTTOM, FLAT,Entry,Canvas
 from PIL import ImageTk, Image
 
 
@@ -27,6 +27,7 @@ from tkinter import simpledialog
 from current_user_info import *
 from demo2 import *
 from student_profile import *
+from check_if_user_suspended import *
 
 
 
@@ -96,36 +97,43 @@ def open_student_login():
         
     def submit():
         userid = Login_emailName_entry.get()
-        password = Login_passwordName_entry.get()
-        
-        
-        if not userid or not password:
-            messagebox.showerror("Error", "Please enter both userid and password.")
+        check_if_user_is_suspended_user_id = str(userid)
+        suspended = check_if_user_is_suspended(check_if_user_is_suspended_user_id,"S")
+        if suspended :
+            messagebox.showinfo("suspension notice","admin suspended you " ,icon=tk.messagebox.ERROR)
+        else :
+            password = Login_passwordName_entry.get()
             
-            return
-        
-        dbobj = db()
-        mydb,cursor = dbobj.dbconnect("credentials")
-        
-        query_boiledPass = "SELECT hash from login WHERE uid=%s"
-        query_uid=userid
-        cursor.execute(query_boiledPass, (query_uid,))
-        resultTuple = cursor.fetchone()
-        if resultTuple is None:
-            # User does not exist
-            messagebox.showerror("Error", "User does not exist.")
-            return
-        else:
-            raw_boiledhash = resultTuple[0]
             
-            passFuncobj = passFunc("key",password,password)
-            isPasswordVerified = passFuncobj.passVerify(password,raw_boiledhash)
-        print("submit button is clicked")
-        if isPasswordVerified:
-            show_otp_dialog(userid,window)
-    
-        else:
-            messagebox.showerror("Access Denied","Invalid userid or Password")
+            if not userid or not password:
+                messagebox.showerror("Error", "Please enter both userid and password.")
+                
+                return
+            
+            dbobj = db()
+            mydb,cursor = dbobj.dbconnect("credentials")
+            
+            query_boiledPass = "SELECT hash from login WHERE uid=%s"
+            query_uid=userid
+            cursor.execute(query_boiledPass, (query_uid,))
+            resultTuple = cursor.fetchone()
+            if resultTuple is None:
+                # User does not exist
+                messagebox.showerror("Error", "User does not exist.")
+                return
+            else:
+                raw_boiledhash = resultTuple[0]
+                
+                passFuncobj = passFunc("key",password,password)
+                isPasswordVerified = passFuncobj.passVerify(password,raw_boiledhash)
+            print("submit button is clicked")
+            if isPasswordVerified:
+                show_otp_dialog(userid,window)
+        
+            else:
+                messagebox.showerror("Access Denied","Invalid userid or Password")
+
+
     window = Tk()
     window.title("EduVault : Academic Records Management")  # Set the title of the window
 
