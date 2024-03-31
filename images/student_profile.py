@@ -86,8 +86,10 @@ def main(user_id):
     root.configure(bg="black")
 
     def open_share_documents_window():
+
         root.destroy()
-        open_student_shate_docs()
+        window = Tk()
+        open_student_shate_docs(user_id,window)
 
     frame = tk.Frame(root, bg="black")
     frame.pack(anchor="nw", padx=10, pady=10)

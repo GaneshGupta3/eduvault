@@ -6,7 +6,7 @@ class db:
         mydb = mysql.connector.connect(
         host="localhost",
         user="root",
-        password="123456",
+        password="admin",
         database=database
         )
     

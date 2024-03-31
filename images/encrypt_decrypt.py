@@ -22,9 +22,12 @@ class fileCrypt:
     @staticmethod
     def encrypt(filename, key):
         base_filename = os.path.basename(filename)
+        print("encrypt:",base_filename)
         UPLOAD_BUFFER_DIR = os.path.join(os.getcwd(), "persistentStorage")
+        print("encrypt:",UPLOAD_BUFFER_DIR)
+
         encrypted_filename = os.path.join(UPLOAD_BUFFER_DIR, base_filename + ".aes")
-        
+        print("encrypt:",encrypted_filename)
         pyAesCrypt.encryptFile(filename, encrypted_filename, key)
         
         print("File encrypted:", encrypted_filename)  # Print for debugging

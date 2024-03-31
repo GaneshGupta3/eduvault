@@ -67,7 +67,7 @@ class UploadDocumentsWindow:
         # Get selected values from comboboxes
         document_name = self.document_name_var.get()
         category = self.category_var.get()
-        
+               
         upload_file_selector(self.uid, document_name, category)
 
         # Use these values for further processing, for example, calling the upload_file function
@@ -79,7 +79,7 @@ class UploadDocumentsWindow:
         # You can uncomment the above line and remove the print statement when integrating with your actual upload logic
 
 # Example usage
-uid = "S353356847444"
+uid = "S026349951448"
 root = tk.Tk()
 upload_window = UploadDocumentsWindow(uid, root)
 root.mainloop()

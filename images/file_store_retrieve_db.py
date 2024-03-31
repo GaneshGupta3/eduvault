@@ -114,11 +114,13 @@ class Document:
         try:
             # Encrypt the file and get the encrypted filename
             encrypted_filename = fileCrypt.encrypt(rawFilename, key)
-
+            print("store_db",encrypted_filename)
             # Read the encrypted file data
             with open(encrypted_filename, "rb") as encrypted_file:
                 encrypted_file_data = encrypted_file.read()
 
+            print(encrypted_filename)
+            print(encrypted_file_data)
             # Store the encrypted file data in the database
             self.store_file_in_database(rawFilename, file_type, file_name_to_store,file_category,file_size_in_bytes,encrypted_file_data, key)
         except FileNotFoundError:
@@ -219,3 +221,4 @@ class Document:
                 mydb.close()
             if cursor:
                 cursor.close()
+    

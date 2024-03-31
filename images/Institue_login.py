@@ -27,6 +27,7 @@ from current_user_info import *
 from student_profile import *
 from institute_homepage import *
 from institute_register import *
+from check_if_user_suspended import *
 
 
 # def show_otp_dialog(userid, window):
@@ -95,36 +96,40 @@ def show_otp_dialog(userid, window):
         
 def submit(institute_id,institute_password,window):
     userid = institute_id
+
+    check_if_user_is_suspended_user_id = str(userid)
+    suspended = check_if_user_is_suspended(check_if_user_is_suspended_user_id,"I")
     password = institute_password
-    
-    
-    if not userid or not password:
-        messagebox.showerror("Error", "Please enter both userid and password.")
-        
-        return
-    
-    dbobj = db()
-    mydb,cursor = dbobj.dbconnect("credentials")
-    
-    query_boiledPass = "SELECT hash from login WHERE uid=%s"
-    query_uid=userid
-    cursor.execute(query_boiledPass, (query_uid,))
-    resultTuple = cursor.fetchone()
-    if resultTuple is None:
-        # User does not exist
-        messagebox.showerror("Error", "User does not exist.")
-        return
+    if suspended :
+        messagebox.showinfo("suspension notice","admin suspended you or your institute is not verified yet" ,icon=tk.messagebox.ERROR)
     else:
-        raw_boiledhash = resultTuple[0]
+        if not userid or not password:
+            messagebox.showerror("Error", "Please enter both userid and password.")
+            
+            return
         
-        passFuncobj = passFunc("key",password,password)
-        isPasswordVerified = passFuncobj.passVerify(password,raw_boiledhash)
-    print("submit button is clicked")
-    if isPasswordVerified:
-        show_otp_dialog(userid,window)
-  
-    else:
-        messagebox.showerror("Access Denied","Invalid userid or Password")
+        dbobj = db()
+        mydb,cursor = dbobj.dbconnect("credentials")
+        
+        query_boiledPass = "SELECT hash from login WHERE uid=%s"
+        query_uid=userid
+        cursor.execute(query_boiledPass, (query_uid,))
+        resultTuple = cursor.fetchone()
+        if resultTuple is None:
+            # User does not exist
+            messagebox.showerror("Error", "User does not exist.")
+            return
+        else:
+            raw_boiledhash = resultTuple[0]
+            
+            passFuncobj = passFunc("key",password,password)
+            isPasswordVerified = passFuncobj.passVerify(password,raw_boiledhash)
+        print("submit button is clicked")
+        if isPasswordVerified:
+            show_otp_dialog(userid,window)
+    
+        else:
+            messagebox.showerror("Access Denied","Invalid userid or Password")
     
    
 
@@ -325,5 +330,4 @@ def page():
 
 if __name__ == '__main__':
     page()
-
 
