@@ -196,6 +196,39 @@ def fetch_documents(user_id,category):
             cursor.close()
 
 
+def fetch_documents_for_sharing(user_id):
+    # Clear existing items in the treeview and reset the file_details list
+
+    try:
+        # Fetch documents from the database for the specified user
+        dbobj = db()
+        mydb, cursor = dbobj.dbconnect("documents")
+        file_details = []
+        tree = []
+        query = "SELECT file_id, file_name, file_type, category, file_size FROM files WHERE uid = %s"
+        cursor.execute(query, (user_id,))
+        documents = cursor.fetchall()
+        return documents
+        if not documents:
+            print("No documents found for the user.")
+        else:
+            # Populate the treeview with fetched documents
+            for document in documents:
+                file_id, file_name, file_type, category, file_size = document
+
+                # Append file details to the list
+                file_details.append((file_id, file_name, file_type, category, file_size))
+
+                # Inserting values into the treeview
+                tree.insert("", "end", values=(file_id, file_name, file_type, category, file_size, ""))
+                print(f"Fetched document: {file_id}, {file_name}, {file_type}, {category}, {file_size}")
+
+    finally:
+        # Always close the database connection and cursor
+        if mydb:
+            mydb.close()
+        if cursor:
+            cursor.close()
 
 class DocumentApp:
     def __init__(self, root, uid):

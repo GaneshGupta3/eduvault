@@ -88,8 +88,8 @@ def main(user_id):
     def open_share_documents_window():
 
         root.destroy()
-        window = Tk()
-        open_student_shate_docs(user_id,window)
+        # window = Tk()
+        open_student_share_docs(user_id)
 
     frame = tk.Frame(root, bg="black")
     frame.pack(anchor="nw", padx=10, pady=10)
@@ -141,6 +141,7 @@ def main(user_id):
     change_password_button.pack(anchor="w", padx=10, pady=(10, 40))
     
     def upload_document():
+        root.destroy()
         open_student_upload_docs(user_id)
         
     document_uplod_button = tk.Button(root, text="upload documents", font=("yu gothic ui", 13, "bold"), width=25, bd=0, bg='#3047ff',
