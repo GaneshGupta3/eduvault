@@ -126,7 +126,7 @@ def open_view_docs(user_id):
 
     def view_marksheets():
         window.destroy()
-        open_marksheets(user_id)
+        open_marksheets(user_id,"Marksheets")
 
     action_button2 = Button(window,
     image=buttonImage1,
@@ -173,7 +173,7 @@ def open_view_docs(user_id):
     
     def view_certificates():
         window.destroy()
-        open_certificates(user_id)
+        open_certificates(user_id,"Certificates")
 
     action_button3 = Button(window,
     image=buttonImage1,
