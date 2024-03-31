@@ -137,7 +137,7 @@ class Example(tk.LabelFrame):
 
 def load_admin_approval():
     root = tk.Tk()
-    
+    root.title("admin approval page")
     height = (n)*42 + 35
     width = 1240
     x = (root.winfo_screenwidth() // 2) - (width // 2)

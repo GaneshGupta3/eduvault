@@ -271,7 +271,7 @@ def load_register():
 
     tan_text = Label(
         tan_image_Label,
-        text="TAN Number:",
+        text="University registration No:",
         fg="#FFFFFF",
         font=("yu gothic ui SemiBold", 13 * -1),
         bg="#3D404B"

@@ -4,6 +4,7 @@ from tkinter import messagebox
 from tkinter import PhotoImage
 from admin_approval import *
 from admin_suspend_acc import *
+from admin_view_report import *
 
 
 def open_admin_homepage(user_id):
@@ -21,6 +22,7 @@ def open_admin_homepage(user_id):
 
     def reports():
         window.destroy()
+        open_admin_view_report()
         
 
     height = 650

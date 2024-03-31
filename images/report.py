@@ -11,7 +11,7 @@ class Report:
             mydb, cursor = dbobj.dbconnect("credentials")
 
             # Fetch report data
-            query = "SELECT report_id, reported_by, reported_to, message, action_taken FROM reports"
+            query = "SELECT report_id, reported_by, reported_to, message FROM reports Where action_taken=0"
             cursor.execute(query)
             reports_list = cursor.fetchall()
 
