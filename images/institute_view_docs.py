@@ -127,7 +127,7 @@ def load_institute_view_docs():
         window.destroy()
         open_institute_homepage()
         
-    buttonImage2 = PhotoImage(file="assets\\back.png")
+    buttonImage2 = PhotoImage(file="assets\\back_black.png")
     button2 = Button(
         bg_image,
         image=buttonImage2,

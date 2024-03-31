@@ -4,6 +4,7 @@ from tkinter import Tk, Frame, Label, Button, BOTTOM, FLAT,Entry,Canvas
 from institute_view_docs import *
 from institute_view_docs import *
 from report_frontend import *
+from institute_view import *
 
 def open_institute_homepage(userid):
     window = Tk()
@@ -11,7 +12,8 @@ def open_institute_homepage(userid):
     def viewDocuments():
         print("calling load view docs")
         window.destroy()
-        load_institute_view_docs()
+        # load_institute_view_docs()
+        load_institute_view(userid)
 
     def report():
         window.destroy()
