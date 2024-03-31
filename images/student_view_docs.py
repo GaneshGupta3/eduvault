@@ -78,7 +78,7 @@ def open_view_docs(user_id):
     # -        ------------ BUTTON 1 ------------- -         
     def view_personal_docs():
         window.destroy()
-        open_personal_docs(user_id)
+        open_personal_docs(user_id,"Personal Documents")
 
 
 

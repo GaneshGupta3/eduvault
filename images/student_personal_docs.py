@@ -2,6 +2,7 @@ import tkinter as tk
 
 from tkinter import messagebox
 import time
+from fetch_documents_list import *
 
 #set value of n (no of pending approvals)
 global n
@@ -9,15 +10,17 @@ n = 6
 
 
 class Example(tk.LabelFrame):
-    def __init__(self, *args, **kwargs):
+    def __init__(self, user_id,category,*args, **kwargs):
+        document_list = fetch_documents(user_id,category)
+        print(document_list)
         tk.LabelFrame.__init__(self, *args, **kwargs)
 
         data = [
             # Nr. Name  Active
-            ["dsfsvfdbtt",123],
-            ["dscdvsfvfsdv",234],["dsfvbtb",678],
-            ["fdfgbgf",456],["dsfbdfgnn",12],
-            ["dvrgbdfgb",123]
+            [document_list[0][1],document_list[0][4]/1000],
+            [document_list[1][1],document_list[1][4]/1000],[document_list[2][1],document_list[2][4]/1000],
+            [document_list[3][1],document_list[3][4]/1000],[document_list[4][1],document_list[4][4]/1000],
+            [document_list[5][1],document_list[5][4]/1000]
             ]
 
 
@@ -65,7 +68,9 @@ class Example(tk.LabelFrame):
                                   fg="#FFFFFF",
                                   font=("yu gothic ui bold", 20 * -1),
                                   bg="#272A37")
+            
 
+            
 
             buttonImage1 = tk.PhotoImage(file="assets\\approval_view.png")
             action_button1 = tk.Button(self,
@@ -101,7 +106,7 @@ class Example(tk.LabelFrame):
       
 
 
-def open_personal_docs(user_id):
+def open_personal_docs(user_id,category):
     root = tk.Tk()
     
     height = (n)*42 + 35
@@ -113,12 +118,12 @@ def open_personal_docs(user_id):
     root.configure(bg="#525561")
 
 
-    Example(root).pack(side="top", fill="both", expand=True, padx=10, pady=10)
+    Example(user_id,category,root).pack(side="top", fill="both", expand=True, padx=10, pady=10)
 
 
     root.mainloop()
 
 
 if __name__ == "__main__":
-    open_personal_docs()
+    open_personal_docs("S353356847444","Personal Documents")
     
