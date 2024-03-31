@@ -102,6 +102,7 @@ def submit(institute_id,institute_password,window):
     password = institute_password
     if suspended :
         messagebox.showinfo("suspension notice","admin suspended you or your institute is not verified yet" ,icon=tk.messagebox.ERROR)
+        return
     else:
         if not userid or not password:
             messagebox.showerror("Error", "Please enter both userid and password.")

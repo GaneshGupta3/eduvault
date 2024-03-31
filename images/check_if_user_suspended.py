@@ -18,12 +18,12 @@ def check_if_user_is_suspended(user_id,user_type):
         query = "select suspended,verified from institute where uid=%s"
         cursor.execute(query,(user_id,))
         result = cursor.fetchone()
-        if result[0] or result[1]:
-            print("institute is suspended or not verified")
-            return True
-        else:
+        if not(result[0]) and result[1]:
             print("institute is not suspended and verified")
             return False
+        else:
+            print("institute is suspended or not verified")
+            return True
 
 def check():
     result = check_if_user_is_suspended("S568111462779","S") 

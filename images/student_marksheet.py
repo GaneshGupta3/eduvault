@@ -103,7 +103,7 @@ class Example(tk.LabelFrame):
 
 def open_marksheets(user_id, category):
     root = tk.Tk()
-
+    root.title("Marksheet page")
     height = (n) * 42 + 35
     width = 1240
     x = (root.winfo_screenwidth() // 2) - (width // 2)

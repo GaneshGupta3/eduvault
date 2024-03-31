@@ -82,6 +82,7 @@ def main(user_id):
 
 # Create the main window
     root = tk.Tk()
+    root.title("student homepage.")
     root.geometry("1166x600")
     root.configure(bg="black")
 

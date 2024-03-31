@@ -110,6 +110,7 @@ class Example(tk.LabelFrame):
 
 def open_student_share_docs(user_id):
     root = tk.Tk()
+    root.title("student share docs")
     height = (n) * 39 + 35
     width = 1240
     x = (root.winfo_screenwidth() // 2) - (width // 2)

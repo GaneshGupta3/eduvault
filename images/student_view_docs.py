@@ -9,7 +9,7 @@ from student_marksheet import *
 
 def open_view_docs(user_id):
     window = Tk()
-
+    window.title("view docs page")
     height = 650
     width = 1240
     x = (window.winfo_screenwidth() // 2) - (width // 2)
