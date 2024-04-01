@@ -56,6 +56,8 @@ class Example(tk.LabelFrame):
                  fg="#FFFFFF",
                  font=("yu gothic ui bold", 20 * -1),
                  bg="#272A37").grid(row=0, column=0, sticky="ew")
+        
+
 
         buttonImage1 = tk.PhotoImage(file="assets\\share.png")
         self.action_button1 = tk.Button(self,
@@ -81,6 +83,14 @@ class Example(tk.LabelFrame):
                                   fg="#FFFFFF",
                                   font=("yu gothic ui bold", 20 * -1),
                                   bg="#272A37")
+            
+
+            tk.Label(self,
+                    text=" ",
+                    fg="#FFFFFF",
+                    font=("yu gothic ui bold", 20 * -1),
+                    bg="#272A37").grid(row=row-1, column=3, sticky="ew")
+
 
             self.selected_documents.append(tk.IntVar(value=0))
             C1 = tk.Checkbutton(self,

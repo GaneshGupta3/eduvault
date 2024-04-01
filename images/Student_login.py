@@ -69,7 +69,7 @@ def open_student_login():
 
         generated_otp = generate_otp()
         user_info = currentUserInfo(userid, user_type)
-        otp_send(generated_otp,user_info)
+        # otp_send(generated_otp,user_info)
         attempts = 0
         while attempts < 3:  # Limit the maximum number of attempts to 3
             otp = simpledialog.askstring("OTP Verification", f"Please enter the OTP {generated_otp} sent to your registered E-mail Id:")
