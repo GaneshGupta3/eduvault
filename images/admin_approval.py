@@ -135,8 +135,8 @@ class Example(tk.LabelFrame):
             row += 1
       
 
-def load_admin_approval():
-    root = tk.Tk()
+def load_admin_approval(root):
+    root = tk.Toplevel(root)
     root.title("admin approval page")
     height = (n)*42 + 35
     width = 1240

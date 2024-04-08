@@ -201,6 +201,7 @@ def load_register():
         institute_name_image_Label,
         bd=0,
         bg="#3D404B",
+        fg = "white",
         highlightthickness=0,
         font=("yu gothic ui SemiBold", 16 * -1),
     )
@@ -228,6 +229,7 @@ def load_register():
         email_image_Label,
         bd=0,
         bg="#3D404B",
+        fg = "white",
         highlightthickness=0,
         font=("yu gothic ui SemiBold", 16 * -1),
     )
@@ -255,6 +257,7 @@ def load_register():
         contact_image_Label,
         bd=0,
         bg="#3D404B",
+        fg = "white",
         highlightthickness=0,
         font=("yu gothic ui SemiBold", 16 * -1),
     )
@@ -282,6 +285,7 @@ def load_register():
         tan_image_Label,
         bd=0,
         bg="#3D404B",
+        fg = "white",
         highlightthickness=0,
         font=("yu gothic ui SemiBold", 16 * -1),
     )
@@ -309,6 +313,7 @@ def load_register():
         password_image_Label,
         bd=0,
         bg="#3D404B",
+        fg = "white",
         highlightthickness=0,
         font=("yu gothic ui SemiBold", 16 * -1),
     )

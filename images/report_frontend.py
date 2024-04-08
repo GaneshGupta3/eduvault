@@ -5,8 +5,8 @@ from institute_homepage import *
 from report import *
 
 
-def open_report_page(userid):
-    window = Tk()
+def open_report_page(userid,root):
+    window = tk.Toplevel(root)
 
     
 

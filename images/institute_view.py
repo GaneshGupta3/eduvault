@@ -13,15 +13,14 @@ n = 6
 
 
 class Example(tk.LabelFrame):
-    def __init__(self, institute_id, *args, **kwargs):
+    def __init__(self, institute_id,student_id, *args, **kwargs):
         def view(uid,file_id):
             print(uid)
             retrieve_file(uid,file_id)
 
         tk.LabelFrame.__init__(self, *args, **kwargs)
-        instituteHasAccessto = instituteHasAccessTo(institute_id, "I")
-        for file in instituteHasAccessto:
-            print(file)
+        instituteHasAccessto = instituteHasAccessTo(institute_id,student_id,"I")
+        print(instituteHasAccessto)
         data = [
             # Nr. Name  Active
             [instituteHasAccessto[0][0][0], instituteHasAccessto[0][0][1], instituteHasAccessto[0][0][5]],
@@ -103,8 +102,8 @@ class Example(tk.LabelFrame):
             row += 1
 
 
-def load_institute_view(institute_id):
-    root = tk.Tk()
+def load_institute_view(institute_id,student_id):
+    root = tk.Toplevel()
     root.title("institute document view page")
     height = (n) * 42 + 35
     width = 1240
@@ -114,10 +113,11 @@ def load_institute_view(institute_id):
 
     root.configure(bg="#525561")
 
-    Example(institute_id, root).pack(side="top", fill="both", expand=True, padx=10, pady=10)
+    Example(institute_id,student_id).pack(side="top", fill="both", expand=True, padx=10, pady=10)
 
     root.mainloop()
 
 
 if __name__ == "__main__":
-    load_institute_view("I138615553989")
+    
+    load_institute_view("I138615553989","S353356847444")

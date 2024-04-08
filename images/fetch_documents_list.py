@@ -580,7 +580,7 @@ def fetch_documents_for_institute_view(file_id):
     # Clear existing items in the treeview and reset the file_details list
 
     try:
-        # Fetch documents from the database for the specified user
+        # Fetch documents from the database for the specified file
         dbobj = db()
         mydb, cursor = dbobj.dbconnect("documents")
         file_details = []

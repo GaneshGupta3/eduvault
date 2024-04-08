@@ -198,7 +198,7 @@ headerText_image_label1.place(x=60, y=45)
 headerText1 = Label(
     bg_image,
     text="Welcome !",
-    fg="#FFFFFF",
+    fg="white",
     font=("yu gothic ui bold", 20 * -1),
     bg="#272A37"
 )
@@ -208,7 +208,7 @@ headerText1.place(x=110, y=45)
 createAccount_header = Label(
     bg_image,
     text="Create Student Account",
-    fg="#FFFFFF",
+    fg="white",
     font=("yu gothic ui Bold", 28 * -1),
     bg="#272A37"
 )
@@ -226,7 +226,7 @@ firstName_image_Label.place(x=80, y=202)
 firstName_text = Label(
     firstName_image_Label,
     text="First name",
-    fg="#FFFFFF",
+    fg="white",
     font=("yu gothic ui SemiBold", 13 * -1),
     bg="#3D404B"
 )
@@ -245,6 +245,7 @@ firstName_entry = Entry(
     bd=0,
     bg="#3D404B",
     highlightthickness=0,
+    fg="white",
     font=("yu gothic ui SemiBold", 16 * -1),
 )
 firstName_entry.place(x=8, y=17, width=140, height=27)
@@ -261,7 +262,7 @@ lastName_image_Label.place(x=293, y=202)
 lastName_text = Label(
     lastName_image_Label,
     text="Last name",
-    fg="#FFFFFF",
+    fg="white",
     font=("yu gothic ui SemiBold", 13 * -1),
     bg="#3D404B"
 )
@@ -279,6 +280,7 @@ lastName_entry = Entry(
     lastName_image_Label,
     bd=0,
     bg="#3D404B",
+    fg="white",
     highlightthickness=0,
     font=("yu gothic ui SemiBold", 16 * -1),
 )
@@ -296,7 +298,7 @@ emailName_image_Label.place(x=80, y=271)
 emailName_text = Label(
     emailName_image_Label,
     text="Email account",
-    fg="#FFFFFF",
+    fg="white",
     font=("yu gothic ui SemiBold", 13 * -1),
     bg="#3D404B"
 )
@@ -313,6 +315,7 @@ emailName_icon_Label.place(x=370, y=15)
 emailName_entry = Entry(
     emailName_image_Label,
     bd=0,
+    fg = "white",
     bg="#3D404B",
     highlightthickness=0,
     font=("yu gothic ui SemiBold", 16 * -1),
@@ -349,6 +352,7 @@ passwordName_entry = Entry(
     passwordName_image_Label,
     bd=0,
     bg="#3D404B",
+    fg = "white",
     highlightthickness=0,
     font=("yu gothic ui SemiBold", 16 * -1),
 )
@@ -384,6 +388,7 @@ confirm_passwordName_entry = Entry(
     confirm_passwordName_image_Label,
     bd=0,
     bg="#3D404B",
+    fg = "white",
     highlightthickness=0,
     font=("yu gothic ui SemiBold", 16 * -1),
 )
@@ -419,6 +424,7 @@ aadhar_entry = Entry(
     aadhar_image_Label,
     bd=0,
     bg="#3D404B",
+    fg = "white",
     highlightthickness=0,
     font=("yu gothic ui SemiBold", 16 * -1),
 )
@@ -454,6 +460,7 @@ contact_entry = Entry(
     contact_image_Label,
     bd=0,
     bg="#3D404B",
+    fg = "white",
     highlightthickness=0,
     font=("yu gothic ui SemiBold", 16 * -1),
 )

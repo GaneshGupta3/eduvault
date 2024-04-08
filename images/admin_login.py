@@ -152,7 +152,7 @@ class LoginPage:
                                     font=("yu gothic ui", 13, "bold"))
         self.username_label.place(x=550, y=300)
 
-        self.username_entry = Entry(self.lgn_frame, highlightthickness=0, relief=FLAT, bg="#040405", fg="#6b6a69",
+        self.username_entry = Entry(self.lgn_frame, highlightthickness=0, relief=FLAT, bg="#040405", fg = "white",
                                     font=("yu gothic ui ", 12, "bold"), insertbackground = '#6b6a69')
         self.username_entry.place(x=580, y=335, width=270)
         user_id = self.username_entry.get()
@@ -203,7 +203,7 @@ class LoginPage:
                                     font=("yu gothic ui", 13, "bold"))
         self.password_label.place(x=550, y=380)
 
-        self.password_entry = Entry(self.lgn_frame, highlightthickness=0, relief=FLAT, bg="#040405", fg="#6b6a69",
+        self.password_entry = Entry(self.lgn_frame, highlightthickness=0, relief=FLAT, bg="#040405", fg = "white",
                                     font=("yu gothic ui", 12, "bold"), show="*", insertbackground = '#6b6a69')
         self.password_entry.place(x=580, y=416, width=244)
         user_password = self.password_entry.get()

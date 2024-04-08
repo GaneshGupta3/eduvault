@@ -8,35 +8,36 @@ from admin_view_report import *
 
 
 def open_admin_homepage(user_id):
-    window = Tk()
+    root = tk.Tk()
 
     def pendingInstituteApproval():
-        window.destroy()
-        load_admin_approval()
+        # root.destroy()
+        load_admin_approval(root)
         
         
 
     def suspendAccounts():
-        window.destroy()
-        open_admin_suspend_acc()
+        # root.destroy()
+        
+        open_admin_suspend_acc(root)
 
     def reports():
-        window.destroy()
-        open_admin_view_report()
+        # root.destroy()
+        open_admin_view_report(root)
         
 
     height = 650
     width = 1240
-    x = (window.winfo_screenwidth() // 2) - (width // 2)
-    y = (window.winfo_screenheight() // 4) - (height // 4)
-    window.geometry('{}x{}+{}+{}'.format(width, height, x, y))
+    x = (root.winfo_screenwidth() // 2) - (width // 2)
+    y = (root.winfo_screenheight() // 4) - (height // 4)
+    root.geometry('{}x{}+{}+{}'.format(width, height, x, y))
 
-    window.configure(bg="#525561")
+    root.configure(bg="#525561")
 
     # ================Background Image ====================
     backgroundImage = PhotoImage(file="assets\\admin_bg.png")
     bg_image = Label(
-        window,
+        root,
         image=backgroundImage,
         bg="#525561"
     )
@@ -104,8 +105,8 @@ def open_admin_homepage(user_id):
     )
     button3.place(x=50, y=420, width=500, height=65)
 
-    window.resizable(False, False)
-    window.mainloop()
+    root.resizable(False, False)
+    root.mainloop()
 
 
 if __name__ == '__main__':

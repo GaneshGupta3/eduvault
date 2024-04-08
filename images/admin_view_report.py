@@ -109,8 +109,8 @@ class Example(tk.LabelFrame):
             row += 1
 
 
-def open_admin_view_report():
-    root = tk.Tk()
+def open_admin_view_report(root):
+    root = tk.Toplevel(root)
 
     height = (n) * 38 + 35
     width = 1240

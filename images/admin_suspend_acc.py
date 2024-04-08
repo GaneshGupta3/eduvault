@@ -6,7 +6,7 @@ from current_user_info import *
 from admin import *
 
 
-def open_admin_suspend_acc():
+def open_admin_suspend_acc(root):
     
     def fetch():
         
@@ -38,7 +38,7 @@ def open_admin_suspend_acc():
 
     
 
-    window = Tk()
+    window = tk.Toplevel(root)
     def back():
         window.destroy()
         open_admin_homepage()
@@ -173,7 +173,7 @@ def open_admin_suspend_acc():
     )
     button2.place(x=100, y=430, width=333, height=65)
 # ==============unsuspend button ================
-    buttonImage4 = PhotoImage(file="assets\\unsuspend.png")
+    buttonImage4 = PhotoImage(file="assets\\unsuspend_fix.png")
     button4 = Button(
         bg_image,
         image=buttonImage4,
@@ -190,7 +190,7 @@ def open_admin_suspend_acc():
 
 
     # =============== Button3 ====================
-    buttonImage3 = PhotoImage(file="assets\\back.png")
+    buttonImage3 = PhotoImage(file="assets\\back_black.png")
     button3 = Button(
         bg_image,
         image=buttonImage3,
